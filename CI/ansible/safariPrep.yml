@@ -1,0 +1,16 @@
+---
+- name: Prime Safari and enable safaridriver
+  hosts: all
+  gather_facts: false
+  become: true
+
+  tasks:
+    - name: Launch Safari briefly, then enable safaridriver
+      shell: |
+        /Applications/Safari.app/Contents/MacOS/Safari &
+        PID=$!
+        sleep 30
+        kill -9 "$PID" || true
+        /usr/bin/safaridriver --enable
+      args:
+        executable: /bin/bash

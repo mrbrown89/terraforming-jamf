@@ -1,0 +1,27 @@
+---
+- name: Set random CI VM hostname
+  hosts: all
+  become: yes
+
+  tasks:
+
+    - name: Generate random 4 digit number
+      set_fact:
+        vm_suffix: "{{ 1000 | random(start=0, step=1) + 1000 }}"
+
+    - name: Set hostname variable
+      set_fact:
+        vm_name: "testing-virt-{{ vm_suffix }}"
+
+    - name: Set ComputerName
+      command: scutil --set ComputerName "{{ vm_name }}"
+
+    - name: Set HostName
+      command: scutil --set HostName "{{ vm_name }}"
+
+    - name: Set LocalHostName
+      command: scutil --set LocalHostName "{{ vm_name }}"
+
+    - name: Print hostname
+      debug:
+        msg: "Hostname set to {{ vm_name }}"

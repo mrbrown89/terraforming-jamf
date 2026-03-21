@@ -1,0 +1,48 @@
+---
+- name: Create Jamf enrollment .webloc on user's Desktop
+  hosts: all
+  gather_facts: false
+  become: true
+
+  vars:
+    local_user: "admin"
+    jamf_url: "<URL here>"
+    jamf_invitation_id: "<jamf invite ID here"
+
+    desktop_path: "/Users/{{ local_user }}/Desktop"
+    webloc_path: "{{ desktop_path }}/Enroll_Your_Mac.webloc"
+
+  tasks:
+    - name: Ensure Desktop exists
+      ansible.builtin.file:
+        path: "{{ desktop_path }}"
+        state: directory
+        owner: "{{ local_user }}"
+        group: staff
+        mode: "0755"
+
+    - name: Write Enroll_Your_Mac.webloc
+      ansible.builtin.copy:
+        dest: "{{ webloc_path }}"
+        owner: "{{ local_user }}"
+        group: staff
+        mode: "0644"
+        content: |
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+            <dict>
+              <key>URL</key>
+              <string>{{ jamf_url }}/enroll?invitation={{ jamf_invitation_id }}</string>
+            </dict>
+          </plist>
+
+    - name: Validate the webloc plist
+      ansible.builtin.command: /usr/bin/plutil -lint "{{ webloc_path }}"
+      changed_when: false
+
+    - name: Remove quarantine attribute if present
+      ansible.builtin.command: /usr/bin/xattr -d com.apple.quarantine "{{ webloc_path }}"
+      register: xattr_out
+      failed_when: false
+      changed_when: xattr_out.rc == 0

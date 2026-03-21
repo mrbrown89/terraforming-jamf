@@ -1,0 +1,17 @@
+---
+- name: Disable Spotlight indexing on all volumes
+  hosts: all
+  gather_facts: false
+  become: true
+
+  tasks:
+    - name: Disable indexing for all volumes
+      command: mdutil -a -i off
+
+    - name: Verify Spotlight indexing status
+      command: mdutil -s
+      register: spotlight_status
+
+    - name: Show Spotlight status
+      debug:
+        msg: "{{ spotlight_status.stdout_lines }}"

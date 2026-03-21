@@ -1,0 +1,35 @@
+## Define miscellaneous variables
+
+variable "jamfpro_instance_url" {
+  description = "Jamf Pro Instance name."
+  type        = string
+}
+
+variable "jamfpro_auth_method" {
+  description = "Jamf Pro Auth Method."
+  type        = string
+  default     = "oauth2" #basic or oauth2
+}
+
+variable "jamfpro_client_id" {
+  description = "Jamf Pro Client ID for authentication."
+  type        = string
+}
+
+variable "jamfpro_client_secret" {
+  description = "Jamf Pro Client Secret for authentication."
+  type        = string
+  sensitive   = true
+}
+
+variable "prestage_admin_username" {
+  type        = string
+  description = "Local admin username for PreStage account creation"
+  default     = "localadmin"
+}
+
+variable "prestage_admin_password" {
+  type        = string
+  description = "Local admin password for PreStage account creation"
+  sensitive   = true
+}

@@ -1,0 +1,17 @@
+---
+- name: Disable screensaver and idle timers
+  hosts: all
+  gather_facts: false
+  become: true
+
+  tasks:
+    - name: Disable loginwindow screensaver idle time
+      command: >
+        /usr/bin/defaults write
+        /Library/Preferences/com.apple.loginwindow
+        loginWindowIdleTime -int 0
+
+    - name: Disable per-host screensaver idle time
+      command: >
+        /usr/bin/defaults -currentHost write
+        com.apple.screensaver idleTime -int 0
