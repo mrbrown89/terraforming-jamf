@@ -47,7 +47,7 @@ variable "jamfprotect_client_id" {
 }
 
 variable "jamfprotect_client_password" {
-  description = "Jamf Protect Client passwrd for authentication."
+  description = "Jamf Protect Client password for authentication."
   type        = string
   sensitive   = true
   default     = ""
@@ -76,17 +76,6 @@ variable "jsc_application_secret" {
   type      = string
   sensitive = true
   default   = ""
-}
-
-## Define Okta-related variables
-variable "tje_okta_client_id" {
-  type    = string
-  default = "0oadb9ke61k2h6JiT1d7"
-}
-
-variable "tje_okta_org_domain" {
-  type    = string
-  default = "sso.tryjamf.com"
 }
 
 variable "include_categories" {
@@ -121,12 +110,6 @@ variable "include_computer_extension_attributes" {
 variable "include_scripts" {
   type        = bool
   description = "Whether to manage Jamf Pro scripts"
-  default     = false
-}
-
-variable "include_smart_groups" {
-  type        = bool
-  description = "Whether to manage Jamf Pro smart computer groups"
   default     = false
 }
 

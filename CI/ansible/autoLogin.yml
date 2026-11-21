@@ -6,7 +6,7 @@
 
   vars:
     admin_user: admin
-    kcpassword_b64: "admin"
+    kcpassword_b64: "HO0/Sry8uizKyk6C" # kcpassword-encoded "admin"
 
   tasks:
     - name: Write /etc/kcpassword

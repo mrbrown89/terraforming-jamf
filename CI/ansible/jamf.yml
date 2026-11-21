@@ -7,7 +7,7 @@
   vars:
     local_user: "admin"
     jamf_url: "<URL here>"
-    jamf_invitation_id: "<jamf invite ID here"
+    jamf_invitation_id: "<jamf invite ID here>"
 
     desktop_path: "/Users/{{ local_user }}/Desktop"
     webloc_path: "{{ desktop_path }}/Enroll_Your_Mac.webloc"

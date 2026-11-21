@@ -15,11 +15,17 @@ Welcome to my Terraforming Jamf repo!
 - terraform/modules/
   Reusable Terraform modules for Jamf Pro and Jamf Protect resources
 
-- env/dev/
+- terraform/envs/dev/
   Development environment for safe testing
 
-- env/prod/
+- terraform/envs/prod/
   Production environment only applied after validation
+
+- terraform/envs/protect/
+  Jamf Protect environment
+
+- CI/
+  Tart, Packer and Ansible tooling for building macOS test VMs (see [CI/README.md](CI/README.md))
 
 ## Workflow
 

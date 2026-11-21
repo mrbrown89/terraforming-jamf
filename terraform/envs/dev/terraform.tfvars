@@ -6,7 +6,7 @@ jamfpro_instance_url = "<Put your Jamf URL here>"
 
 
 ## Jamf Protect Account Details
-#jamfprotect_url             = “”
+#jamfprotect_url             = ""
 #jamfprotect_clientid        = ""
 #jamfprotect_client_password = ""
 

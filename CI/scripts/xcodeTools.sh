@@ -1,3 +1,6 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
 install_xcode_tools() {
   echo ">>> Ensuring Xcode Command Line Tools (if needed)..."
 
